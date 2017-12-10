@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import DataTables from 'material-ui-datatables';
 import { withRouter, NavLink } from 'react-router-dom';
 
-function StudentsList(props) {
+function SubStudentList(props) {
 
-    const { students } = props;
-    const TABLE_DATA = students
+    const { activeStudents } = props;
+    const TABLE_DATA = activeStudents
     const TABLE_COLUMNS = [
         {
             key: 'name',
@@ -46,8 +46,8 @@ function StudentsList(props) {
 
 const mapStateToProps = function (state) {
     return {
-        students: state.students
+        activeStudents: state.activeStudents
     };
 };
 
-export default withRouter(connect(mapStateToProps)(StudentsList));
+export default withRouter(connect(mapStateToProps)(SubStudentList));

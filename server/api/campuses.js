@@ -19,7 +19,7 @@ router.get('/:id', function (req, res, next) {
         .catch(next);
 });
 
-// POST api/campuses/ (Creates new student)
+// POST api/campuses/ (Creates new campus)
 router.post('/', function (req, res, next) {
     Campuses.create(req.body)
         .then(campus => res.json(campus))
@@ -29,21 +29,21 @@ router.post('/', function (req, res, next) {
 // PUT api/campuses/:id (Updates campus)
 router.put('/:id', function (req, res, next) {
     Campuses.update(req.body, {
-            where: {
-                id: req.params.id
-            },
-            returning: true
-        }).then(student => res.json(student))
+        where: {
+            id: req.params.id
+        },
+        returning: true
+    }).then(student => res.json(student))
         .catch(next);
 });
 
 // DELETE api/students/:id (Deletes campus)
 router.delete('/:id', function (req, res, next) {
     Campuses.destroy({
-            where: {
-                id: req.params.id
-            }
-        }).then(campus => res.json(campus))
+        where: {
+            id: req.params.id
+        }
+    }).then(campus => res.json(campus))
         .catch(next);
 })
 

@@ -14,7 +14,7 @@ module.exports = db.define('student', {
         }
     },
     GPA: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.FLOAT,
         allowNull: false,
         validate: {
             min: 0,

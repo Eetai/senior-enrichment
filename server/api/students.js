@@ -11,6 +11,19 @@ router.get('/', function (req, res, next) {
         .catch(next);
 });
 
+
+// GET api/students/campus/:id (Gets all students at campus)
+router.get('/campus/:id', function (req, res, next) {
+    Students.findAll(
+        {
+            where: { campusId: req.params.id },
+            include: { all: true }
+        }
+    )
+        .then(students => res.json(students))
+        .catch(next);
+});
+
 // GET api/students/:id (Gets specific student)
 router.get('/:id', function (req, res, next) {
     Students.findById(req.params.id)
@@ -28,21 +41,21 @@ router.post('/', function (req, res, next) {
 // PUT api/students/:id (Updates student)
 router.put('/:id', function (req, res, next) {
     Students.update(req.body, {
-            where: {
-                id: req.params.id
-            },
-            returning: true
-        }).then(student => res.json(student))
+        where: {
+            id: req.params.id
+        },
+        returning: true
+    }).then(student => res.json(student))
         .catch(next);
 });
 
 // DELETE api/students/:id (Deletes student)
 router.delete('/:id', function (req, res, next) {
     Students.destroy({
-            where: {
-                id: req.params.id
-            }
-        }).then(students => res.json(students))
+        where: {
+            id: req.params.id
+        }
+    }).then(students => res.json(students))
         .catch(next);
 })
 
