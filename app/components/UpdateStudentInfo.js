@@ -4,7 +4,7 @@ import { createStudent, writeStudentName, writeStudentGPA, writeStudentCampus, w
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField'
 
-function NewStudentEntry(props) {
+function UpdateStudentInfo(props) {
 
     const { studentName, studentGPA, studentEmail, studentCampus, handleCampusChange, handleSubmit, handleNameChange, handleGPAChange, handleEmailChange } = props;
 
@@ -18,7 +18,7 @@ function NewStudentEntry(props) {
                     className="form-control"
                     type="text"
                     name="studentName"
-                    placeholder="Enter student name"
+                    placeholder={props.activeStudent.name}
                 /><br /><br />
                 <label htmlFor="picture">Add a GPA</label><br />
                 <TextField
@@ -27,7 +27,7 @@ function NewStudentEntry(props) {
                     className="form-control"
                     type="text"
                     name="studentGPA"
-                    placeholder="Enter the GPA"
+                    placeholder={props.activeStudent.GPA}
                 />
                 <br />
                 <label htmlFor="picture">Add an Email</label><br />
@@ -37,7 +37,7 @@ function NewStudentEntry(props) {
                     className="form-control"
                     type="text"
                     name="studentEmail"
-                    placeholder="Enter the email"
+                    placeholder={props.activeStudent.email}
                 />
                 <br />
                 <label htmlFor="picture">Add a Campus</label><br />
@@ -47,7 +47,7 @@ function NewStudentEntry(props) {
                     className="form-control"
                     type="text"
                     name="studentCampus"
-                    placeholder="Enter the campus id"
+                    placeholder={props.activeStudent.campus}
                 />
                 <br />
                 <RaisedButton label="submit" type="submit" />
@@ -101,4 +101,4 @@ const mapDispatchToProps = function (dispatch, ownProps) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(NewStudentEntry);
+)(UpdateStudentInfo);

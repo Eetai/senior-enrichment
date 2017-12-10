@@ -8,7 +8,6 @@ export function setActiveStudents(students) {
 }
 
 export function fetchActiveStudents(id) {
-    console.log("this is the id.", id)
     return function thunk(dispatch) {
         return axios.get(`/api/students/campus/${id}`)
             .then(res => res.data)

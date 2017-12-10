@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const SET_ACTIVE_PLANET = 'SET_ACTIVE_PLANET'
+const SET_CURRENT_STUDENT = 'SET_CURRENT_STUDENT'
 
 
-export function setActivePlanet(planet) {
-    const action = { type: SET_ACTIVE_PLANET, planet };
+export function setCurrentStudent(student) {
+    const action = { type: SET_ACTIVE_PLANET, student };
     return action;
 }

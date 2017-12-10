@@ -28,7 +28,6 @@ function PlanetsList(props) {
                     cellHeight={600}
                     style={styles.gridList}>
                     {tilesData && tilesData.map((tile) => (
-
                         <NavLink to={`/PlanetsList/${tile.id}`} key={tile.id}>
                             < GridTile
                                 key={tile.imgURL}
@@ -42,7 +41,6 @@ function PlanetsList(props) {
                     ))}
                 </GridList>
             </div>
-
             <NewPlanetEntry />
         </div>
     )

@@ -12,6 +12,8 @@ import Home from './Home'
 import SinglePlanet from './SinglePlanet'
 import SingleStudent from './SingleStudent'
 import AllStudentsContainer from './AllStudentsContainer'
+import UpdateCampusInfo from './UpdateCampusInfo'
+import UpdateStudentInfo from './UpdateStudentInfo'
 
 export default class App extends Component {
 
@@ -33,7 +35,9 @@ export default class App extends Component {
                     <Route path="/NewPlanetEntry" component={NewPlanetEntry} />
                     <Route path="/NewStudentEntry" component={NewStudentEntry} />
                     <Route exact path="/PlanetsList/:campusId" component={SinglePlanet} />
+                    <Route exact path="/PlanetsList/Update/:campusId" component={UpdateCampusInfo} />
                     <Route exact path="/StudentsList/:studentId" component={SingleStudent} />
+                    <Route exact path="/StudentsList/Update/:studentId" component={UpdateStudentInfo} />
                     <Route component={Home} />
                 </Switch>
             </div>

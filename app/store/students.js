@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const GET_STUDENT = 'GET_STUDENT';
 const GET_STUDENTS = 'GET_STUDENTS';
+const DESTROY_STUDENTS = 'DESTROY_STUDENTS';
 
 export function getStudent(student) {
     const action = { type: GET_STUDENT, student };
@@ -38,14 +39,27 @@ export function fetchSomeStudents(campusID) {
 }
 
 
-export function createStudent(planet) {
+export function createStudent(student) {
 
     return function thunk(dispatch) {
-        return axios.post('/api/students', planet)
+        return axios.post('/api/students', student)
             .then(res => res.data)
             .then(campus => {
                 const action = fetchStudents()
                 dispatch(action);
+            });
+    };
+}
+
+export function destroyStudent(student, history) {
+
+    return function thunk(dispatch) {
+        return axios.delete(`/api/students/${student}`, student)
+            .then(res => res.data)
+            .then(campus => {
+                const action = fetchStudents()
+                dispatch(action);
+                history.push(`/StudentsList`)
             });
     };
 }
@@ -57,7 +71,8 @@ export default function reducer(state = [], action) {
 
         case GET_STUDENTS:
             return action.students;
-
+        case DESTROY_STUDENTS:
+            return action.students
         default:
             return state;
     }

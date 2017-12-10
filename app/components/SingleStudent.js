@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPlanet, fetchActiveStudents } from '../store/index';
 import RaisedButton from 'material-ui/RaisedButton';
+import { withRouter } from 'react-router-dom';
+import { destroyStudent } from '../store/index'
 
 class SingleStudent extends Component {
 
+    constructor(props) {
+        super(props)
+    }
+
     componentDidMount(props) {
 
-        this.props.loadPlanet(this.props.match.params.campusId);
-        this.props.loadRelevantStudents(this.props.match.params.campusId)
     }
+
 
     render() {
         return (<div>
-            Hi, welcome to Single Student page.
+            <div>Hi, welcome to single student page for {this.props.match.params.studentId} </div>
+            <br /><br />
+            <RaisedButton label="Update Student Info" ></RaisedButton>
+            <br /><br />
+            <RaisedButton label="Destroy Student" onClick={this.props.destroyThisStudent}></RaisedButton>
         </div >)
     }
 }
@@ -21,19 +29,16 @@ class SingleStudent extends Component {
 
 const mapStateToProps = function (state, ownProps) {
     return {
-        planet: state.activePlanet,
-        students: state.activeStudents
+        students: state.students
     }
 }
 
-const mapDispatchToProps = function (dispatch) {
+const mapDispatchToProps = function (dispatch, ownProps) {
     return {
-        loadPlanet: (id) => { dispatch(fetchPlanet(id)) },
-        loadRelevantStudents: (id) => { dispatch(fetchActiveStudents(id)) }
+        destroyThisStudent: () => { dispatch(destroyStudent(ownProps.match.params.studentId, ownProps.history)) }
     }
 }
 
+const singleStudentContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(SingleStudent))
 
-const SingleStudent = connect(mapStateToProps, mapDispatchToProps)(SinglePlanet)
-
-export default SingleStudent
+export default singleStudentContainer

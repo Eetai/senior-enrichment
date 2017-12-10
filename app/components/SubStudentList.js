@@ -1,45 +1,44 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import DataTables from 'material-ui-datatables';
+import {
+    Table,
+    TableBody,
+    TableHeader,
+    TableHeaderColumn,
+    TableRow,
+    TableRowColumn,
+} from 'material-ui/Table';
 import { withRouter, NavLink } from 'react-router-dom';
 
-function SubStudentList(props) {
-
+function SubStudentsList(props) {
     const { activeStudents } = props;
-    const TABLE_DATA = activeStudents
-    const TABLE_COLUMNS = [
-        {
-            key: 'name',
-            label: 'Student name'
-        },
-        {
-            key: 'email',
-            label: 'Email'
-        },
-        {
-            key: 'GPA',
-            label: 'GPA'
-        }
-        ,
-        {
-            key: 'campusId',
-            label: 'CampusID'
-        }
-    ]
 
     return (
-        <div>
-            <DataTables
-                height={'auto'}
-                selectable={false}
-                showRowHover={true}
-                columns={TABLE_COLUMNS}
-                data={TABLE_DATA}
-                showCheckboxes={false}
-                page={1}
-                count={10}
-            />
+        < div >
+            <Table
+            >
+                <TableHeader
+                >      <TableRow>
+                        <TableHeaderColumn tooltip=""></TableHeaderColumn>
+                        <TableHeaderColumn tooltip="Name">Name</TableHeaderColumn>
+                        <TableHeaderColumn tooltip="GPA">GPA</TableHeaderColumn>
+                        <TableHeaderColumn tooltip="CampusID">CampusID</TableHeaderColumn>
+                        <TableHeaderColumn tooltip="Email">Email</TableHeaderColumn>
+                    </TableRow>
 
+                </TableHeader>
+                <TableBody>
+                    {activeStudents.map((student, index) => (
+                        <TableRow key={index}>
+                            <TableRowColumn></TableRowColumn>
+                            <TableRowColumn><NavLink to={`/StudentsList/${student.id}`}>{student.name}</NavLink></TableRowColumn>
+                            <TableRowColumn>{student.GPA}</TableRowColumn>
+                            <TableRowColumn>{student.campusId}</TableRowColumn>
+                            <TableRowColumn>{student.email}</TableRowColumn>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
         </div >
     );
 }
@@ -50,4 +49,4 @@ const mapStateToProps = function (state) {
     };
 };
 
-export default withRouter(connect(mapStateToProps)(SubStudentList));
+export default withRouter(connect(mapStateToProps)(SubStudentsList));

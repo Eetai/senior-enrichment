@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const GET_PLANET = 'GET_PLANET';
 const GET_PLANETS = 'GET_PLANETS';
+const DESTROY_PLANET = 'DESTROY_PLANET'
 
 export function getPlanet(planet) {
     const action = { type: GET_PLANET, planet };
@@ -37,11 +38,29 @@ export function createPlanet(planet) {
     };
 }
 
+export function destroyPlanet(planet, history) {
+
+    return function thunk(dispatch) {
+        return axios.delete(`/api/campuses/${planet}`, planet)
+            .then(res => res.data)
+            .then(campus => {
+                const action = fetchPlanets()
+                dispatch(action);
+                history.push(`/PlanetsList`)
+            });
+    };
+
+
+
+}
+
 export default function reducer(state = [], action) {
 
     switch (action.type) {
         case GET_PLANETS:
             return action.planets;
+        case DESTROY_PLANET:
+            return action.planets
         default:
             return state;
     }

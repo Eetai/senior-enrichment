@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPlanet, fetchActiveStudents } from '../store/index';
+import { NavLink, withRouter } from 'react-router-dom';
+import { fetchPlanet, fetchActiveStudents, destroyPlanet } from '../store/index';
 import SubStudentList from './SubStudentList'
 import RaisedButton from 'material-ui/RaisedButton';
 
 class SinglePlanet extends Component {
+
+    constructor(props) {
+        super(props)
+    }
 
     componentDidMount(props) {
 
@@ -19,13 +24,16 @@ class SinglePlanet extends Component {
             <div>The students here:</div>
             <SubStudentList />
             <br /><br />
-            <RaisedButton label="Update Planet" ></RaisedButton>
+            <RaisedButton label="Update Planet" >
+                <NavLink to={`/PlanetsList/Update/${this.props.planet.id}`}></NavLink>
+            </RaisedButton>
             <br /><br />
-            <RaisedButton label="Destroy Planet and all of its innocent habitants" ></RaisedButton>
+            <RaisedButton label="Destroy Planet" onClick={this.props.destroyThisPlanet}>
+
+            </RaisedButton>
         </div >)
     }
 }
-
 
 const mapStateToProps = function (state, ownProps) {
     return {
@@ -34,15 +42,16 @@ const mapStateToProps = function (state, ownProps) {
     }
 }
 
-const mapDispatchToProps = function (dispatch) {
+const mapDispatchToProps = function (dispatch, ownProps) {
     return {
         loadPlanet: (id) => { dispatch(fetchPlanet(id)) },
-        loadRelevantStudents: (id) => { dispatch(fetchActiveStudents(id)) }
+        loadRelevantStudents: (id) => { dispatch(fetchActiveStudents(id)) },
+        destroyThisPlanet: () => { dispatch(destroyPlanet(ownProps.match.params.campusId, ownProps.history)) }
     }
 }
 
 
 
-const singlePlanetContainer = connect(mapStateToProps, mapDispatchToProps)(SinglePlanet)
+const singlePlanetContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(SinglePlanet))
 
 export default singlePlanetContainer

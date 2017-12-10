@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createPlanet, writePlanetName, writePlanetURL, writePlanetDescription } from '../store';
+import { editPlanet, writePlanetName, writePlanetURL, writePlanetDescription } from '../store';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField'
 
-function NewPlanetEntry(props) {
+function UpdateCampusInfo(props) {
 
     const { newPlanetName, planetDescription, planetURL, handleSubmit, handleDescriptionChange, handleNameChange, handleURLChange } = props;
 
@@ -18,7 +18,7 @@ function NewPlanetEntry(props) {
                     className="form-control"
                     type="text"
                     name="newPlanetName"
-                    placeholder="Enter planet name"
+                    placeholder={props.activePlanet.name}
                 /><br /><br />
                 <label htmlFor="picture">Add a Picture</label><br />
                 <TextField
@@ -27,7 +27,7 @@ function NewPlanetEntry(props) {
                     className="form-control"
                     type="text"
                     name="planetURL"
-                    placeholder="Enter the URL"
+                    placeholder={props.activePlanet.imgURL}
                 /><br /><br />
                 <label htmlFor="picture">Add a Description</label><br />
                 <TextField
@@ -36,7 +36,7 @@ function NewPlanetEntry(props) {
                     className="form-control"
                     type="text"
                     name="planetDescription"
-                    placeholder="Enter a description"
+                    placeholder={props.activePlanet.description}
                 />
                 <br />
                 <RaisedButton label="submit" type="submit" />
@@ -71,18 +71,15 @@ const mapDispatchToProps = function (dispatch, ownProps) {
             const imgURL = event.target.planetURL.value
             const planetDescription = event.target.planetDescription.value
             const submitobj = { name: name, imgURL: imgURL, description: planetDescription }
-            dispatch(createPlanet(submitobj));
+            dispatch(editPlanet(submitobj));
             dispatch(writePlanetName(''));
             dispatch(writePlanetURL(''));
             dispatch(writePlanetDescription(''));
-
         }
-
     };
-
 }
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(NewPlanetEntry);
+)(UpdateCampusInfo);
