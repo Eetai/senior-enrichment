@@ -73,7 +73,7 @@ export function editStudent(student, history) {
             .then(student => {
                 const action = fetchStudents()
                 dispatch(action);
-                history.push(`/StudentsList/${student.id}`)
+                history.push(`/StudentsList`)
             });
     };
 }

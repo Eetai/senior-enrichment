@@ -2,7 +2,11 @@ const Sequelize = require('sequelize');
 const db = require('../db');
 
 module.exports = db.define('student', {
-    name: {
+    firstName: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    lastName: {
         type: Sequelize.STRING,
         allowNull: false
     },
@@ -21,4 +25,11 @@ module.exports = db.define('student', {
             max: 4.0
         }
     }
-});
+
+}, {
+        getterMethods: {
+            fullName: function () {
+                return this.firstName + ' ' + this.lastName;
+            }
+        }
+    });

@@ -1,10 +1,16 @@
-const WRITE_STUDENT_NAME = 'WRITE_STUDENT_NAME';
+const WRITE_STUDENT_FIRST_NAME = 'WRITE_STUDENT_FIRST_NAME';
+const WRITE_STUDENT_LAST_NAME = 'WRITE_STUDENT_LAST_NAME';
 const WRITE_STUDENT_GPA = 'WRITE_STUDENT_GPA';
 const WRITE_STUDENT_CAMPUS = 'WRITE_STUDENT_CAMPUS';
 const WRITE_STUDENT_EMAIL = 'WRITE_STUDENT_EMAIL';
 
-export function writeStudentName(studentName) {
-    const action = { type: WRITE_STUDENT_NAME, studentName };
+export function writeStudentFirstName(studentFirstName) {
+    const action = { type: WRITE_STUDENT_FIRST_NAME, studentFirstName };
+    return action;
+}
+
+export function writeStudentLastName(studentLastName) {
+    const action = { type: WRITE_STUDENT_LAST_NAME, studentLastName };
     return action;
 }
 
@@ -24,7 +30,8 @@ export function writeStudentEmail(studentEmail) {
 }
 
 const newStateObj = {
-    studentName: '',
+    studentFirstName: '',
+    studentLastName: '',
     studentGPA: '',
     studentEmail: '',
     studentCampus: ''
@@ -33,8 +40,10 @@ const newStateObj = {
 export default function reducer(state = newStateObj, action) {
 
     switch (action.type) {
-        case WRITE_STUDENT_NAME:
-            return Object.assign({}, state, { studentName: action.studentName })
+        case WRITE_STUDENT_FIRST_NAME:
+            return Object.assign({}, state, { studentFirstName: action.studentFirstName })
+        case WRITE_STUDENT_LAST_NAME:
+            return Object.assign({}, state, { studentLastName: action.studentLastName })
         case WRITE_STUDENT_GPA:
             return Object.assign({}, state, { studentGPA: action.studentGPA })
         case WRITE_STUDENT_EMAIL:

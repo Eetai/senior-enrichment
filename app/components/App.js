@@ -27,7 +27,7 @@ export default class App extends Component {
     render() {
         return (
             <div>
-                <div> <Navbar /></div>
+                <Navbar />
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/PlanetsList" component={PlanetsList} />

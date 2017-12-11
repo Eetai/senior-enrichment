@@ -21,8 +21,12 @@ class SinglePlanet extends Component {
 
     render() {
         return (<div>
-            <div><img className="image" src={this.props.planet.imgURL} /></div>
+            <div><img className="image" style={{ height: 600 }} src={this.props.planet.imgURL} /></div>
+            <br />
             <div>Hi, welcome to {this.props.planet.name}</div>
+            <br />
+            <div>Description: {this.props.planet.description}</div>
+            <br />
             <div>The students here:</div>
             <SubStudentList />
             <br /><br />

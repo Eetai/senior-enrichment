@@ -17,7 +17,7 @@ function SubStudentsList(props) {
         < div >
             <Table
             >
-                <TableHeader
+                <TableHeader displaySelectAll={false} adjustForCheckbox={false}
                 >      <TableRow>
                         <TableHeaderColumn tooltip=""></TableHeaderColumn>
                         <TableHeaderColumn tooltip="Name">Name</TableHeaderColumn>
@@ -27,11 +27,11 @@ function SubStudentsList(props) {
                     </TableRow>
 
                 </TableHeader>
-                <TableBody>
+                <TableBody displayRowCheckbox={false}>
                     {activeStudents.map((student, index) => (
                         <TableRow key={index}>
                             <TableRowColumn></TableRowColumn>
-                            <TableRowColumn><NavLink to={`/StudentsList/${student.id}`}>{student.name}</NavLink></TableRowColumn>
+                            <TableRowColumn><NavLink to={`/StudentsList/${student.id}`}>{student.fullName}</NavLink></TableRowColumn>
                             <TableRowColumn>{student.GPA}</TableRowColumn>
                             <TableRowColumn>{student.campusId}</TableRowColumn>
                             <TableRowColumn>{student.email}</TableRowColumn>

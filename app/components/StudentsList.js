@@ -17,7 +17,7 @@ function StudentsList(props) {
         < div >
             <Table
             >
-                <TableHeader
+                <TableHeader displaySelectAll={false} adjustForCheckbox={false}
                 >      <TableRow>
                         <TableHeaderColumn tooltip=""></TableHeaderColumn>
                         <TableHeaderColumn tooltip="Name">Name</TableHeaderColumn>
@@ -27,11 +27,11 @@ function StudentsList(props) {
                     </TableRow>
 
                 </TableHeader>
-                <TableBody>
+                <TableBody displayRowCheckbox={false}>
                     {students.map((student, index) => (
                         <TableRow key={index}>
                             <TableRowColumn></TableRowColumn>
-                            <TableRowColumn><NavLink to={`/StudentsList/${students.id}`}>{student.name}</NavLink></TableRowColumn>
+                            <TableRowColumn><NavLink to={`/StudentsList/${student.id}`}>{student.fullName}</NavLink></TableRowColumn>
                             <TableRowColumn>{student.GPA}</TableRowColumn>
                             <TableRowColumn><NavLink to={`/PlanetsList/${student.campusId}`}>{
                                 planets[planets.map(v => v.id).indexOf(parseInt(student.campusId))].name
