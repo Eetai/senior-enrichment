@@ -34,8 +34,8 @@ export default class App extends Component {
                     <Route exact path="/StudentsList" component={AllStudentsContainer} />
                     <Route path="/NewPlanetEntry" component={NewPlanetEntry} />
                     <Route path="/NewStudentEntry" component={NewStudentEntry} />
-                    <Route exact path="/PlanetsList/:campusId" component={SinglePlanet} />
                     <Route exact path="/PlanetsList/Update/:campusId" component={UpdateCampusInfo} />
+                    <Route exact path="/PlanetsList/:campusId" component={SinglePlanet} />
                     <Route exact path="/StudentsList/:studentId" component={SingleStudent} />
                     <Route exact path="/StudentsList/Update/:studentId" component={UpdateStudentInfo} />
                     <Route component={Home} />

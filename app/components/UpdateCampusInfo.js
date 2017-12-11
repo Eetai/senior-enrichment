@@ -11,7 +11,7 @@ function UpdateCampusInfo(props) {
     return (
         <form onSubmit={props.handleSubmit}>
             <div className="form-group">
-                <label htmlFor="name">Create a new Planet</label><br /><br />
+                <label htmlFor="name">Update the planet name</label><br /><br />
                 <TextField
                     value={newPlanetName}
                     onChange={handleNameChange}
@@ -20,7 +20,7 @@ function UpdateCampusInfo(props) {
                     name="newPlanetName"
                     placeholder={props.activePlanet.name}
                 /><br /><br />
-                <label htmlFor="picture">Add a Picture</label><br />
+                <label htmlFor="picture">Add a new picture</label><br />
                 <TextField
                     value={planetURL}
                     onChange={handleURLChange}
@@ -29,7 +29,7 @@ function UpdateCampusInfo(props) {
                     name="planetURL"
                     placeholder={props.activePlanet.imgURL}
                 /><br /><br />
-                <label htmlFor="picture">Add a Description</label><br />
+                <label htmlFor="picture">Add a new description</label><br />
                 <TextField
                     value={planetDescription}
                     onChange={handleDescriptionChange}
@@ -47,6 +47,7 @@ function UpdateCampusInfo(props) {
 
 const mapStateToProps = function (state) {
     return {
+        activePlanet: state.activePlanet,
         newPlanetName: state.newPlanetEntry.newPlanetName,
         planetURL: state.newPlanetEntry.planetURL,
         planetDescription: state.newPlanetEntry.planetDescription
@@ -70,8 +71,9 @@ const mapDispatchToProps = function (dispatch, ownProps) {
             const name = event.target.newPlanetName.value
             const imgURL = event.target.planetURL.value
             const planetDescription = event.target.planetDescription.value
-            const submitobj = { name: name, imgURL: imgURL, description: planetDescription }
-            dispatch(editPlanet(submitobj));
+            const id = ownProps.match.params.campusId
+            const submitobj = { id: id, name: name, imgURL: imgURL, description: planetDescription }
+            dispatch(editPlanet(submitobj, ownProps.history));
             dispatch(writePlanetName(''));
             dispatch(writePlanetURL(''));
             dispatch(writePlanetDescription(''));

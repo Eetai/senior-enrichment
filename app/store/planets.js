@@ -49,9 +49,20 @@ export function destroyPlanet(planet, history) {
                 history.push(`/PlanetsList`)
             });
     };
+}
 
 
+export function editPlanet(planet, history) {
 
+    return function thunk(dispatch) {
+        return axios.put(`/api/campuses/${planet.id}`, planet)
+            .then(res => res.data)
+            .then(campus => {
+                const action = fetchPlanets()
+                dispatch(action);
+                history.push(`/PlanetsList/${planet.id}`)
+            });
+    };
 }
 
 export default function reducer(state = [], action) {

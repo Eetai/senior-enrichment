@@ -8,9 +8,10 @@ import newStudentEntry from './newStudentEntry'
 import planets from './planets'
 import activePlanet from './activePlanet'
 import activeStudents from './activeStudents'
+import activeStudent from './activeStudent'
 
 const reducer = combineReducers({
-    students, planets, newPlanetEntry, newStudentEntry, activePlanet, activeStudents
+    students, planets, newPlanetEntry, newStudentEntry, activePlanet, activeStudents, activeStudent
 });
 
 const store = createStore(
@@ -30,3 +31,4 @@ export * from './newPlanetEntry';
 export * from './newStudentEntry'
 export * from './activePlanet'
 export * from './activeStudents'
+export * from './activeStudent'

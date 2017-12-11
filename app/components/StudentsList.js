@@ -11,7 +11,7 @@ import {
 import { withRouter, NavLink } from 'react-router-dom';
 
 function StudentsList(props) {
-    const { students } = props;
+    const { students, planets } = props;
 
     return (
         < div >
@@ -28,13 +28,15 @@ function StudentsList(props) {
 
                 </TableHeader>
                 <TableBody>
-                    {students.map((students, index) => (
+                    {students.map((student, index) => (
                         <TableRow key={index}>
                             <TableRowColumn></TableRowColumn>
-                            <TableRowColumn><NavLink to={`/StudentsList/${students.id}`}>{students.name}</NavLink></TableRowColumn>
-                            <TableRowColumn>{students.GPA}</TableRowColumn>
-                            <TableRowColumn>{students.campusId}</TableRowColumn>
-                            <TableRowColumn>{students.email}</TableRowColumn>
+                            <TableRowColumn><NavLink to={`/StudentsList/${students.id}`}>{student.name}</NavLink></TableRowColumn>
+                            <TableRowColumn>{student.GPA}</TableRowColumn>
+                            <TableRowColumn><NavLink to={`/PlanetsList/${student.campusId}`}>{
+                                planets[planets.map(v => v.id).indexOf(parseInt(student.campusId))].name
+                            }</NavLink></TableRowColumn>
+                            <TableRowColumn>{student.email}</TableRowColumn>
                         </TableRow>
                     ))}
                 </TableBody>
@@ -45,7 +47,8 @@ function StudentsList(props) {
 
 const mapStateToProps = function (state) {
     return {
-        students: state.students
+        students: state.students,
+        planets: state.planets
     };
 };
 

@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { createStudent, writeStudentName, writeStudentGPA, writeStudentCampus, writeStudentEmail } from '../store';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField'
+import DropDownMenu from 'material-ui/DropDownMenu'
+import MenuItem from 'material-ui/MenuItem'
 
 function NewStudentEntry(props) {
 
-    const { studentName, studentGPA, studentEmail, studentCampus, handleCampusChange, handleSubmit, handleNameChange, handleGPAChange, handleEmailChange } = props;
+    const { planets, studentName, studentGPA, studentEmail, studentCampus, handleCampusChange, handleSubmit, handleNameChange, handleGPAChange, handleEmailChange } = props;
 
     return (
         <form onSubmit={props.handleSubmit}>
@@ -41,14 +43,12 @@ function NewStudentEntry(props) {
                 />
                 <br />
                 <label htmlFor="picture">Add a Campus</label><br />
-                <TextField
-                    value={studentCampus}
-                    onChange={handleCampusChange}
-                    className="form-control"
-                    type="text"
-                    name="studentCampus"
-                    placeholder="Enter the campus id"
-                />
+                <DropDownMenu value={props.studentCampus} onChange={handleCampusChange}>
+                    {props.planets.map((planet, index) => (
+                        <MenuItem value={planet.id} primaryText={planet.name} key={planet.id} name='planetId' />
+                    ))}
+                </DropDownMenu>
+
                 <br />
                 <RaisedButton label="submit" type="submit" />
             </div>
@@ -61,9 +61,13 @@ const mapStateToProps = function (state) {
         studentName: state.newStudentEntry.studentName,
         studentGPA: state.newStudentEntry.studentGPA,
         studentEmail: state.newStudentEntry.studentEmail,
-        studentCampus: state.newStudentEntry.studentCampus
+        studentCampus: state.newStudentEntry.studentCampus,
+        planets: state.planets
     };
 };
+
+
+
 
 const mapDispatchToProps = function (dispatch, ownProps) {
     return {
@@ -74,7 +78,9 @@ const mapDispatchToProps = function (dispatch, ownProps) {
             dispatch(writeStudentGPA(event.target.value));
         }
         ,
-        handleCampusChange(event) {
+        handleCampusChange(event, value) {
+            console.log(event, value)
+            console.log(ownProps)
             dispatch(writeStudentCampus(event.target.value));
         }
         ,
@@ -102,3 +108,13 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(NewStudentEntry);
+
+
+{/* <TextField
+value={studentCampus}
+onChange={handleCampusChange}
+className="form-control"
+type="text"
+name="studentCampus"
+placeholder="Enter the campus id"
+/> */}

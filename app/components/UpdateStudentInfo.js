@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createStudent, writeStudentName, writeStudentGPA, writeStudentCampus, writeStudentEmail } from '../store';
+import { editStudent, writeStudentName, writeStudentGPA, writeStudentCampus, writeStudentEmail } from '../store';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField'
 
@@ -11,7 +11,7 @@ function UpdateStudentInfo(props) {
     return (
         <form onSubmit={props.handleSubmit}>
             <div className="form-group">
-                <label htmlFor="name">Create a new Student</label><br /><br />
+                <label htmlFor="name">Edit Student Data</label><br /><br />
                 <TextField
                     value={studentName}
                     onChange={handleNameChange}
@@ -20,7 +20,7 @@ function UpdateStudentInfo(props) {
                     name="studentName"
                     placeholder={props.activeStudent.name}
                 /><br /><br />
-                <label htmlFor="picture">Add a GPA</label><br />
+                <label htmlFor="picture">Edit GPA</label><br />
                 <TextField
                     value={studentGPA}
                     onChange={handleGPAChange}
@@ -30,7 +30,7 @@ function UpdateStudentInfo(props) {
                     placeholder={props.activeStudent.GPA}
                 />
                 <br />
-                <label htmlFor="picture">Add an Email</label><br />
+                <label htmlFor="picture">Edit Email</label><br />
                 <TextField
                     value={studentEmail}
                     onChange={handleEmailChange}
@@ -40,7 +40,7 @@ function UpdateStudentInfo(props) {
                     placeholder={props.activeStudent.email}
                 />
                 <br />
-                <label htmlFor="picture">Add a Campus</label><br />
+                <label htmlFor="picture">Edit Campus</label><br />
                 <TextField
                     value={studentCampus}
                     onChange={handleCampusChange}
@@ -58,6 +58,7 @@ function UpdateStudentInfo(props) {
 
 const mapStateToProps = function (state) {
     return {
+        activeStudent: state.activeStudent,
         studentName: state.newStudentEntry.studentName,
         studentGPA: state.newStudentEntry.studentGPA,
         studentEmail: state.newStudentEntry.studentEmail,
@@ -88,8 +89,9 @@ const mapDispatchToProps = function (dispatch, ownProps) {
             const email = event.target.studentEmail.value
             const campus = event.target.studentCampus.value
             const GPA = event.target.studentGPA.value
-            const submitobj = { name: name, email: email, campusId: campus, GPA: GPA }
-            dispatch(createStudent(submitobj));
+            const id = parseInt(ownProps.match.params.studentId)
+            const submitobj = { id: id, name: name, email: email, campusId: campus, GPA: GPA }
+            dispatch(editStudent(submitobj, ownProps.history));
             dispatch(writeStudentName(''));
             dispatch(writeStudentGPA(''));
             dispatch(writeStudentCampus(''));

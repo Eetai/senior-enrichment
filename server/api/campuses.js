@@ -30,10 +30,10 @@ router.post('/', function (req, res, next) {
 router.put('/:id', function (req, res, next) {
     Campuses.update(req.body, {
         where: {
-            id: req.params.id
+            id: parseInt(req.params.id)
         },
         returning: true
-    }).then(student => res.json(student))
+    }).then(campus => res.json(campus))
         .catch(next);
 });
 

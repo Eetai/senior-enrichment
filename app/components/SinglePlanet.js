@@ -4,6 +4,8 @@ import { NavLink, withRouter } from 'react-router-dom';
 import { fetchPlanet, fetchActiveStudents, destroyPlanet } from '../store/index';
 import SubStudentList from './SubStudentList'
 import RaisedButton from 'material-ui/RaisedButton';
+import UpdateCampusInfo from './UpdateCampusInfo'
+import NewStudentEntry from './NewStudentEntry';
 
 class SinglePlanet extends Component {
 
@@ -24,13 +26,14 @@ class SinglePlanet extends Component {
             <div>The students here:</div>
             <SubStudentList />
             <br /><br />
-            <RaisedButton label="Update Planet" >
-                <NavLink to={`/PlanetsList/Update/${this.props.planet.id}`}></NavLink>
+            <RaisedButton label="Update Planet" onClick={
+                () => this.props.history.push(`/PlanetsList/Update/${this.props.planet.id}`)}>
             </RaisedButton>
             <br /><br />
             <RaisedButton label="Destroy Planet" onClick={this.props.destroyThisPlanet}>
-
             </RaisedButton>
+            <br /><br />
+            <NewStudentEntry />
         </div >)
     }
 }
@@ -55,3 +58,5 @@ const mapDispatchToProps = function (dispatch, ownProps) {
 const singlePlanetContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(SinglePlanet))
 
 export default singlePlanetContainer
+
+// 

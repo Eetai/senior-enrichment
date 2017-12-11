@@ -64,6 +64,19 @@ export function destroyStudent(student, history) {
     };
 }
 
+export function editStudent(student, history) {
+
+    return function thunk(dispatch) {
+        console.log(student)
+        return axios.put(`/api/students/${student.id}`, student)
+            .then(res => res.data)
+            .then(student => {
+                const action = fetchStudents()
+                dispatch(action);
+                history.push(`/StudentsList/${student.id}`)
+            });
+    };
+}
 
 export default function reducer(state = [], action) {
 
