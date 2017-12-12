@@ -1,13 +1,6 @@
 import axios from 'axios';
-
-const GET_PLANET = 'GET_PLANET';
 const GET_PLANETS = 'GET_PLANETS';
 const DESTROY_PLANET = 'DESTROY_PLANET'
-
-export function getPlanet(planet) {
-    const action = { type: GET_PLANET, planet };
-    return action;
-}
 
 export function getPlanets(planets) {
     const action = { type: GET_PLANETS, planets };

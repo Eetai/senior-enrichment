@@ -11,7 +11,7 @@ import {
 import { withRouter, NavLink } from 'react-router-dom';
 
 function StudentsList(props) {
-    const { students, planets } = props;
+    const { students, planets, destroyThisStudent } = props;
 
     return (
         < div >
@@ -45,11 +45,13 @@ function StudentsList(props) {
     );
 }
 
+
 const mapStateToProps = function (state) {
     return {
         students: state.students,
         planets: state.planets
     };
 };
+
 
 export default withRouter(connect(mapStateToProps)(StudentsList));

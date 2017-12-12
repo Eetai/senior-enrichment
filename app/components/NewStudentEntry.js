@@ -51,12 +51,15 @@ function NewStudentEntry(props) {
                     placeholder="Enter the email"
                 />
                 <br />
-                <label htmlFor="campus">Campus</label><br />
-                <DropDownMenu name='studentCampus' value={studentCampus} onChange={handleCampusChange}>
-                    {props.planets.map((planet, index) => (
-                        <MenuItem value={planet.id} primaryText={planet.name} key={planet.id} />
-                    ))}
-                </DropDownMenu>
+                <label htmlFor="Campus">Add a Campus</label><br />
+                <TextField
+                    value={studentCampus}
+                    onChange={handleCampusChange}
+                    className="form-control"
+                    type="text"
+                    name="studentCampus"
+                    placeholder="Enter the campus id"
+                />
 
                 <br />
                 <RaisedButton label="submit" type="submit" />
@@ -102,13 +105,13 @@ const mapDispatchToProps = function (dispatch, ownProps) {
         handleSubmit(event) {
 
             event.preventDefault();
-            console.log(event.target.value)
             const firstName = event.target.studentFirstName.value
             const lastName = event.target.studentLastName.value
             const email = event.target.studentEmail.value
             const campus = event.target.studentCampus.value
             const GPA = event.target.studentGPA.value
             const submitobj = { firstName: firstName, lastName: lastName, email: email, campusId: campus, GPA: GPA }
+            console.log(submitobj)
             dispatch(createStudent(submitobj));
             dispatch(writeStudentFirstName(''));
             dispatch(writeStudentLastName(""));
@@ -125,11 +128,4 @@ export default connect(
 )(NewStudentEntry);
 
 
-{/* <TextField
-value={studentCampus}
-onChange={handleCampusChange}
-className="form-control"
-type="text"
-name="studentCampus"
-placeholder="Enter the campus id"
-/> */}
+{/*  */ }

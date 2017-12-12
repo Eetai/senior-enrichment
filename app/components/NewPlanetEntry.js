@@ -65,7 +65,7 @@ const mapDispatchToProps = function (dispatch, ownProps) {
             dispatch(writePlanetDescription(event.target.value));
         }
         ,
-        handleSubmit(event) {
+        handleSubmit: (event) => {
             event.preventDefault();
             const name = event.target.newPlanetName.value
             const imgURL = event.target.planetURL.value

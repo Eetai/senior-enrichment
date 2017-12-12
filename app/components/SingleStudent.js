@@ -23,7 +23,6 @@ class SingleStudent extends Component {
             <div>Campus: <NavLink to={`/PlanetsList/${this.props.activeStudent.campusId}`}>
                 {this.props.activeStudent.campusId}
             </NavLink> </div>
-
             <br /><br />
             <RaisedButton label="Update Student" onClick={
                 () => this.props.history.push(`/StudentsList/Update/${this.props.match.params.studentId}`)}>
