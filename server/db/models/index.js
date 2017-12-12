@@ -14,3 +14,12 @@ module.exports = {
 	Students,
 	Campuses
 }
+
+Campuses.hasMany(Students, {
+	onDelete: 'cascade',
+	hooks: true
+});
+
+Campuses.beforeDestroy((campus) => {
+	Students.destroy({ where: { CampusId: campus.id } });
+});

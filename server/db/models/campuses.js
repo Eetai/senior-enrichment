@@ -14,4 +14,6 @@ module.exports = db.define('campus', {
         type: Sequelize.TEXT,
         defaultValue: "STUFF"
     }
-});
+}
+);
+

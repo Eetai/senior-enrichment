@@ -43,7 +43,11 @@ router.delete('/:id', function (req, res, next) {
         where: {
             id: req.params.id
         }
-    }).then(campus => res.json(campus))
+    }).then(Students.destroy({
+        where: {
+            campusId: req.params.id
+        }
+    })).then(campus => res.json(campus))
         .catch(next);
 })
 
