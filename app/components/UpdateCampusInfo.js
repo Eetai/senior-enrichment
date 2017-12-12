@@ -3,45 +3,57 @@ import { connect } from 'react-redux';
 import { editPlanet, writePlanetName, writePlanetURL, writePlanetDescription } from '../store';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField'
+import Paper from 'material-ui/Paper';
 
 function UpdateCampusInfo(props) {
 
     const { newPlanetName, planetDescription, planetURL, handleSubmit, handleDescriptionChange, handleNameChange, handleURLChange } = props;
 
-    return (
-        <form onSubmit={props.handleSubmit}>
-            <div className="form-group">
-                <label htmlFor="name">Update the planet name</label><br /><br />
-                <TextField
-                    value={newPlanetName}
-                    onChange={handleNameChange}
-                    className="form-control"
-                    type="text"
-                    name="newPlanetName"
-                    placeholder={props.activePlanet.name}
-                /><br /><br />
-                <label htmlFor="picture">Add a new picture</label><br />
-                <TextField
-                    value={planetURL}
-                    onChange={handleURLChange}
-                    className="form-control"
-                    type="text"
-                    name="planetURL"
-                    placeholder={props.activePlanet.imgURL}
-                /><br /><br />
-                <label htmlFor="picture">Add a new description</label><br />
-                <TextField
-                    value={planetDescription}
-                    onChange={handleDescriptionChange}
-                    className="form-control"
-                    type="text"
-                    name="planetDescription"
-                    placeholder={props.activePlanet.description}
-                />
-                <br />
-                <RaisedButton label="submit" type="submit" />
-            </div>
-        </form >
+    const style = {
+        width: 400,
+        textAlign: 'center',
+        display: 'inline-block',
+    };
+
+    return (<div>
+        <center>
+            <Paper style={style} zDepth={4} rounded={false}>
+                <form onSubmit={props.handleSubmit}>
+                    <div className="form-group"><br /><br />
+                        <label htmlFor="name"><u>Update the planet name</u></label><br />
+                        <TextField
+                            value={newPlanetName}
+                            onChange={handleNameChange}
+                            className="form-control"
+                            type="text"
+                            name="newPlanetName"
+                            placeholder={props.activePlanet.name}
+                        /><br /><br />
+                        <label htmlFor="picture"><u>Add a new picture</u></label><br />
+                        <TextField
+                            value={planetURL}
+                            onChange={handleURLChange}
+                            className="form-control"
+                            type="text"
+                            name="planetURL"
+                            placeholder={props.activePlanet.imgURL}
+                        /><br /><br />
+                        <label htmlFor="picture"><u>Add a new description</u></label><br />
+                        <TextField
+                            value={planetDescription}
+                            onChange={handleDescriptionChange}
+                            className="form-control"
+                            type="text"
+                            name="planetDescription"
+                            placeholder={props.activePlanet.description}
+                        />
+                        <br /><br />
+                        <RaisedButton label="submit" type="submit" />
+                        <br /><br />
+                    </div>
+                </form ></Paper>
+        </center>
+    </div>
     );
 }
 

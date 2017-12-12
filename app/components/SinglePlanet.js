@@ -7,6 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import UpdateCampusInfo from './UpdateCampusInfo'
 import NewStudentEntry from './NewStudentEntry';
 
+
 class SinglePlanet extends Component {
 
     constructor(props) {
@@ -19,15 +20,20 @@ class SinglePlanet extends Component {
         this.props.loadRelevantStudents(this.props.match.params.campusId)
     }
 
+
     render() {
-        return (<div>
+
+
+        return (<div><center>
             <div><img className="image" style={{ height: 600 }} src={this.props.planet.imgURL} /></div>
             <br />
             <div>Hi, welcome to {this.props.planet.name}</div>
             <br />
             <div>Description: {this.props.planet.description}</div>
             <br />
-            <div>The students here:</div>
+            <div>Campus ID: {this.props.planet.id}</div>
+            <br />
+            <div><u>Student Body</u></div>
             <SubStudentList />
             <br /><br />
             <RaisedButton label="Update Planet" onClick={
@@ -37,15 +43,17 @@ class SinglePlanet extends Component {
             <RaisedButton label="Destroy Planet" onClick={this.props.destroyThisPlanet}>
             </RaisedButton>
             <br /><br />
-            <NewStudentEntry />
+            <NewStudentEntry /></center>
+            <br /><br />
         </div >)
     }
 }
 
-const mapStateToProps = function (state, ownProps) {
+const mapStateToProps = function (state) {
     return {
         planet: state.activePlanet,
-        students: state.activeStudents
+        activeStudents: state.activeStudents,
+        students: state.students
     }
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Paper from 'material-ui/Paper';
 
 function Home() {
     const style = {
@@ -8,8 +9,10 @@ function Home() {
             display: 'block'
         }
     }
+
+
     return (<div>
-        <h1>Margaret Hamilton Interplanetary Academy</h1>
+        <h1><center>Margaret Hamilton Interplanetary Academy</center></h1>
         <img style={style.img}
             src="http://anotherimg.dazedgroup.netdna-cdn.com/1050/azure/another-prod/350/6/356573.jpg" />
     </div >

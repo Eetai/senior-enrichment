@@ -5,12 +5,22 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField'
 import DropDownMenu from 'material-ui/DropDownMenu'
 import MenuItem from 'material-ui/MenuItem'
+import Paper from 'material-ui/Paper';
 
 function NewStudentEntry(props) {
 
     const { planets, studentFirstName, studentLastName, studentGPA, studentEmail, studentCampus, handleFirstNameChange, handleLastNameChange, handleCampusChange, handleSubmit, handleNameChange, handleGPAChange, handleEmailChange } = props;
 
-    return (
+    const style = {
+        width: 400,
+        textAlign: 'center',
+        display: 'inline-block',
+    };
+
+    return (<div><Paper style={style} zDepth={4} rounded={false}>
+        <br />
+        <div><u>Add a new Student</u></div>
+        <br />
         <form onSubmit={props.handleSubmit}>
             <div className="form-group">
                 <label htmlFor="name">First name</label><br />
@@ -51,7 +61,7 @@ function NewStudentEntry(props) {
                     placeholder="Enter the email"
                 />
                 <br />
-                <label htmlFor="Campus">Add a Campus</label><br />
+                <label htmlFor="Campus">Student's campus</label><br />
                 <TextField
                     value={studentCampus}
                     onChange={handleCampusChange}
@@ -63,8 +73,9 @@ function NewStudentEntry(props) {
 
                 <br />
                 <RaisedButton label="submit" type="submit" />
-            </div>
-        </form >
+            </div> <br /><br />
+        </form ></Paper>
+    </div >
     );
 }
 

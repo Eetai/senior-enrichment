@@ -3,65 +3,76 @@ import { connect } from 'react-redux';
 import { editStudent, writeStudentFirstName, writeStudentLastName, writeStudentGPA, writeStudentCampus, writeStudentEmail } from '../store';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField'
+import Paper from 'material-ui/Paper';
 
 function UpdateStudentInfo(props) {
 
     const { studentFirstName, studentLastName, studentGPA, studentEmail, studentCampus, handleCampusChange, handleSubmit, handleFirstNameChange, handleLastNameChange, handleGPAChange, handleEmailChange } = props;
 
-    return (
-        <form onSubmit={props.handleSubmit}>
-            <div className="form-group">
-                <label htmlFor="name">Edit Student First Name</label><br /><br />
-                <TextField
-                    value={studentFirstName}
-                    onChange={handleFirstNameChange}
-                    className="form-control"
-                    type="text"
-                    name="studentFirstName"
-                    placeholder={props.activeStudent.firstName}
-                /><br />
-                <label htmlFor="name">Edit Student Last Name</label><br /><br />
-                <TextField
-                    value={studentLastName}
-                    onChange={handleLastNameChange}
-                    className="form-control"
-                    type="text"
-                    name="studentLastName"
-                    placeholder={props.activeStudent.lastName}
-                /><br />
-                <label htmlFor="picture">Edit GPA</label><br />
-                <TextField
-                    value={studentGPA}
-                    onChange={handleGPAChange}
-                    className="form-control"
-                    type="text"
-                    name="studentGPA"
-                    placeholder={props.activeStudent.GPA}
-                />
-                <br />
-                <label htmlFor="picture">Edit Email</label><br />
-                <TextField
-                    value={studentEmail}
-                    onChange={handleEmailChange}
-                    className="form-control"
-                    type="text"
-                    name="studentEmail"
-                    placeholder={props.activeStudent.email}
-                />
-                <br />
-                <label htmlFor="picture">Edit Campus</label><br />
-                <TextField
-                    value={studentCampus}
-                    onChange={handleCampusChange}
-                    className="form-control"
-                    type="text"
-                    name="studentCampus"
-                    placeholder={props.activeStudent.campus}
-                />
-                <br />
-                <RaisedButton label="submit" type="submit" />
-            </div>
-        </form >
+    const style = {
+        width: 400,
+        textAlign: 'center',
+        display: 'inline-block',
+    };
+
+    return (<div>
+        <center><br />
+            <Paper style={style} zDepth={4} rounded={false}>
+                <form onSubmit={props.handleSubmit}>
+                    <div className="form-group"><br />
+                        <label htmlFor="name"><u>Edit Student First Name</u></label><br />
+                        <TextField
+                            value={studentFirstName}
+                            onChange={handleFirstNameChange}
+                            className="form-control"
+                            type="text"
+                            name="studentFirstName"
+                            placeholder={props.activeStudent.firstName}
+                        /><br />
+                        <label htmlFor="name"><u>Edit Student Last Name</u></label><br />
+                        <TextField
+                            value={studentLastName}
+                            onChange={handleLastNameChange}
+                            className="form-control"
+                            type="text"
+                            name="studentLastName"
+                            placeholder={props.activeStudent.lastName}
+                        /><br />
+                        <label htmlFor="picture"><u>Edit GPA</u></label><br />
+                        <TextField
+                            value={studentGPA}
+                            onChange={handleGPAChange}
+                            className="form-control"
+                            type="text"
+                            name="studentGPA"
+                            placeholder={props.activeStudent.GPA}
+                        />
+                        <br />
+                        <label htmlFor="picture"><u>Edit Email</u></label><br />
+                        <TextField
+                            value={studentEmail}
+                            onChange={handleEmailChange}
+                            className="form-control"
+                            type="text"
+                            name="studentEmail"
+                            placeholder={props.activeStudent.email}
+                        />
+                        <br />
+                        <label htmlFor="picture"><u>Edit Campus</u></label><br />
+                        <TextField
+                            value={studentCampus}
+                            onChange={handleCampusChange}
+                            className="form-control"
+                            type="text"
+                            name="studentCampus"
+                            placeholder={props.activeStudent.campus}
+                        />
+                        <br />
+                        <RaisedButton label="submit" type="submit" />
+                        <br /> <br />
+                    </div>
+                </form ></Paper></center>
+    </div>
     );
 }
 

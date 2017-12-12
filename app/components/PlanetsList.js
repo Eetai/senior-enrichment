@@ -40,8 +40,9 @@ function PlanetsList(props) {
                         </NavLink>
                     ))}
                 </GridList>
-            </div>
-            <NewPlanetEntry />
+            </div><br /><br /><br />
+            <center> <NewPlanetEntry /></center>
+            <br /><br />
         </div>
     )
 }
@@ -53,8 +54,4 @@ const mapStateToProps = function (state) {
 };
 
 export default withRouter(connect(mapStateToProps)(PlanetsList));
-
-
-// 
-
 

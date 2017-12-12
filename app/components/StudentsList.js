@@ -22,7 +22,7 @@ function StudentsList(props) {
                         <TableHeaderColumn tooltip=""></TableHeaderColumn>
                         <TableHeaderColumn tooltip="Name">Name</TableHeaderColumn>
                         <TableHeaderColumn tooltip="GPA">GPA</TableHeaderColumn>
-                        <TableHeaderColumn tooltip="CampusID">CampusID</TableHeaderColumn>
+                        <TableHeaderColumn tooltip="CampusID">Campus Name</TableHeaderColumn>
                         <TableHeaderColumn tooltip="Email">Email</TableHeaderColumn>
                     </TableRow>
 

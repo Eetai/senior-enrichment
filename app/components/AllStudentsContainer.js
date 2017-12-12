@@ -8,7 +8,8 @@ function AllStudentsContainer() {
     return (
         <div>
             <StudentsList />
-            <NewStudentEntry />
+            <br /><br /><br /><br />
+            <center><NewStudentEntry /></center>
         </div>
     );
 }

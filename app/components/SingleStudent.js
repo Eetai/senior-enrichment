@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import { NavLink, withRouter } from 'react-router-dom';
 import { fetchStudent, destroyStudent } from '../store/index';
+import Paper from 'material-ui/Paper';
 
 
 class SingleStudent extends Component {
@@ -16,7 +17,16 @@ class SingleStudent extends Component {
     }
 
     render() {
-        return (<div>
+
+
+        const style = {
+            width: 400,
+            textAlign: 'center',
+            display: 'inline-block',
+        };
+
+        return (<div><center><Paper style={style} zDepth={4} rounded={false}>
+            <br /><br />
             <div>Student Name: {this.props.activeStudent.fullName}  </div>
             <div>Student GPA: {this.props.activeStudent.GPA} </div>
             <div>Student email: {this.props.activeStudent.email} </div>
@@ -29,6 +39,8 @@ class SingleStudent extends Component {
             </RaisedButton>
             <br /><br />
             <RaisedButton label="Destroy Student" onClick={this.props.destroyThisStudent}></RaisedButton>
+            <br /><br />
+        </Paper>  </center>
         </div >)
     }
 }

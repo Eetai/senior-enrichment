@@ -3,15 +3,23 @@ import { connect } from 'react-redux';
 import { createPlanet, writePlanetName, writePlanetURL, writePlanetDescription } from '../store';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField'
+import Paper from 'material-ui/Paper';
 
 function NewPlanetEntry(props) {
 
     const { newPlanetName, planetDescription, planetURL, handleSubmit, handleDescriptionChange, handleNameChange, handleURLChange } = props;
 
-    return (
+    const style = {
+        width: 400,
+        textAlign: 'center',
+        display: 'inline-block',
+    };
+
+    return (<div><Paper style={style} zDepth={4} rounded={false}>
+
         <form onSubmit={props.handleSubmit}>
-            <div className="form-group">
-                <label htmlFor="name">Create a new Planet</label><br /><br />
+            <div className="form-group"><br /><br />
+                <label htmlFor="name"><u>Create a new Campus</u></label><br />
                 <TextField
                     value={newPlanetName}
                     onChange={handleNameChange}
@@ -20,7 +28,7 @@ function NewPlanetEntry(props) {
                     name="newPlanetName"
                     placeholder="Enter planet name"
                 /><br /><br />
-                <label htmlFor="picture">Add a Picture</label><br />
+                <label htmlFor="picture"><u>Add a Picture</u></label><br />
                 <TextField
                     value={planetURL}
                     onChange={handleURLChange}
@@ -29,7 +37,7 @@ function NewPlanetEntry(props) {
                     name="planetURL"
                     placeholder="Enter the URL"
                 /><br /><br />
-                <label htmlFor="picture">Add a Description</label><br />
+                <label htmlFor="picture"><u>Add a Description</u></label><br />
                 <TextField
                     value={planetDescription}
                     onChange={handleDescriptionChange}
@@ -38,10 +46,11 @@ function NewPlanetEntry(props) {
                     name="planetDescription"
                     placeholder="Enter a description"
                 />
-                <br />
+                <br /><br />
                 <RaisedButton label="submit" type="submit" />
-            </div>
-        </form >
+            </div> <br /><br /> <br />
+        </form ></Paper>
+    </div>
     );
 }
 
